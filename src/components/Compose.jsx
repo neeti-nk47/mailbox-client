@@ -43,6 +43,7 @@ export default function Compose() {
       to: enteredEmail,
       subject: enteredSubject,
       body: enteredMailBody,
+      read: false,
     };
 
     fetch(`${baseURL}/${receiverModEmail}/Inbox.json`, {

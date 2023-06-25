@@ -44,11 +44,11 @@ const SignupLogin = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCW-VrFmh7dYoU7ptSpirixoA6CkYZq1Ss";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCsemZDKvxLfSQNMAGm0NNjf0rMMoG2owI";
     } else {
       if (enteredPassword === confirmPassword) {
         url =
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCW-VrFmh7dYoU7ptSpirixoA6CkYZq1Ss";
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCsemZDKvxLfSQNMAGm0NNjf0rMMoG2owI";
       } else {
         alert("Password not same");
       }

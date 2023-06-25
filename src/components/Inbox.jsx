@@ -1,3 +1,4 @@
+import { InfoIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -45,6 +46,7 @@ export default function Inbox() {
         to: data[key].to,
         subject: data[key].subject,
         body: data[key].body,
+        read: data[key].read,
       });
     }
     setMails(inboxMails);
@@ -54,7 +56,7 @@ export default function Inbox() {
     fetchHandler(userModEmail);
   }, [fetchHandler, userModEmail]);
 
-  //DELETE---------------------------------------------
+  //DELETE-------------------------------------------------
   const deleteHandler = (obj) => {
     fetch(`${baseURL}/${userModEmail}/Inbox/${obj.ID}.json`, {
       method: "DELETE",
@@ -67,9 +69,30 @@ export default function Inbox() {
   };
 
   //VIEW----------------------------------------------------
-  const openModal = (item) => {
-    setSelectedItem(item);
+  const openModal = (obj) => {
+    setSelectedItem(obj);
     setIsModalOpen(true);
+
+    const updatedData = {
+      ...obj,
+      read: true, // Update
+    };
+
+    fetch(`${baseURL}/${userModEmail}/Inbox/${obj.ID}.json`, {
+      method: "PUT",
+      body: JSON.stringify(updatedData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        fetchHandler(userModEmail);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -86,6 +109,7 @@ export default function Inbox() {
               <ListItem key={ele.ID} my="3">
                 <Flex gap="2" p="1" border="0.4px solid lightblue">
                   <Text mx="3" fontWeight="bold">
+                    {!ele.read && <InfoIcon mx="2" boxSize={3} color="blue" />}
                     {ele.from}
                   </Text>
                   <Text mx="3" fontWeight="bold">

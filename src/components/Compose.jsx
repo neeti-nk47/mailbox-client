@@ -103,7 +103,7 @@ export default function Compose() {
         </HStack>
         <Textarea
           my="3"
-          height="300px"
+          height="250px"
           resize="vertical"
           ref={mailbodyInputRef}
         />

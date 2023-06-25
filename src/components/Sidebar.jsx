@@ -6,6 +6,12 @@ export default function Sidebar() {
   return (
     <List fontSize="1.2rem" spacing="3">
       <ListItem p="2">
+        <NavLink to="/mailbox/Compose">
+          <EmailIcon m="3" />
+          Compose
+        </NavLink>
+      </ListItem>
+      <ListItem p="2">
         <NavLink to="/mailbox">
           <ChatIcon m="3" />
           Inbox
@@ -15,12 +21,6 @@ export default function Sidebar() {
         <NavLink to="/mailbox/Sentmail">
           <CalendarIcon m="3" />
           Sent
-        </NavLink>
-      </ListItem>
-      <ListItem p="2">
-        <NavLink to="/mailbox/Compose">
-          <EmailIcon m="3" />
-          New Email
         </NavLink>
       </ListItem>
     </List>

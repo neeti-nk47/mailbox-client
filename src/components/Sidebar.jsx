@@ -1,17 +1,27 @@
+import { CalendarIcon, ChatIcon, EmailIcon } from "@chakra-ui/icons";
 import { List, ListItem } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   return (
-    <List color="white" fontSize="1.2rem" spacing={4}>
-      <ListItem>
-        <NavLink to="/">Inbox</NavLink>
+    <List fontSize="1.2rem" spacing="3">
+      <ListItem p="2">
+        <NavLink to="/mailbox">
+          <ChatIcon m="3" />
+          Inbox
+        </NavLink>
       </ListItem>
-      <ListItem>
-        <NavLink to="/">Sent</NavLink>
+      <ListItem p="2">
+        <NavLink to="/mailbox/Sentmail">
+          <CalendarIcon m="3" />
+          Sent
+        </NavLink>
       </ListItem>
-      <ListItem>
-        <NavLink to="/">New Email</NavLink>
+      <ListItem p="2">
+        <NavLink to="/mailbox/Compose">
+          <EmailIcon m="3" />
+          New Email
+        </NavLink>
       </ListItem>
     </List>
   );

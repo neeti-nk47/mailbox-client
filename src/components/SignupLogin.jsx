@@ -79,7 +79,7 @@ const SignupLogin = () => {
       .then((data) => {
         console.log("Success");
         authCtx.login(data.idToken, enteredEmail);
-        history("/welcome");
+        history("/mailbox");
       })
       .catch((err) => {
         alert(err.message);

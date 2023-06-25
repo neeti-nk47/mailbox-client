@@ -17,6 +17,13 @@ import { useRef } from "react";
 export default function Compose() {
   const baseURL = "https://mailbox-204ed-default-rtdb.firebaseio.com";
 
+  const senderEmail = localStorage.getItem("Email");
+
+  const senderModEmail = localStorage
+    .getItem("Email")
+    .replace("@", "")
+    .replace(".", "");
+
   const toast = useToast();
 
   const emailInputRef = useRef();
@@ -29,43 +36,47 @@ export default function Compose() {
     const enteredSubject = subjectInputRef.current.value;
     const enteredMailBody = mailbodyInputRef.current.value;
 
-    const modEmail = enteredEmail.replace("@", "").replace(".", "");
+    const receiverModEmail = enteredEmail.replace("@", "").replace(".", "");
 
     const newEmail = {
-      email: enteredEmail,
+      from: senderEmail,
+      to: enteredEmail,
       subject: enteredSubject,
       body: enteredMailBody,
     };
 
-    fetch(`${baseURL}/${modEmail}/Inbox.json`, {
+    fetch(`${baseURL}/${receiverModEmail}/Inbox.json`, {
       method: "POST",
       body: JSON.stringify(newEmail),
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = data.error.message;
-
-            throw new Error(errorMessage);
-          });
-        }
-      })
+      .then((response) => response.json())
       .then((data) => {
         console.log(data);
 
-        toast({
-          title: "Email Sent",
-          status: "success",
-          position: "top-right",
-          duration: 2000,
-        });
-
-        //apna
+        //User Sentbox========================
+        fetch(`${baseURL}/${senderModEmail}/Sentbox.json`, {
+          method: "POST",
+          body: JSON.stringify(newEmail),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            toast({
+              title: "Email Sent",
+              status: "success",
+              position: "top-right",
+              duration: 2000,
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((err) => {
         console.log(err.message);

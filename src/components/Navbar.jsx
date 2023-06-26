@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <Flex as="nav" p="10px" alignItems="center" gap="10px" bg="blue.300">
-      <Heading as="h1" mx="10">
+      <Heading size="xl" mx="10">
         MailBox
       </Heading>
       <Spacer />

@@ -127,7 +127,7 @@ export default function Sentbox() {
               <ModalHeader>Subject: {selectedItem.subject}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                From: {selectedItem.from}
+                To: {selectedItem.to}
                 <Text>{selectedItem.body}</Text>
               </ModalBody>
               <ModalFooter>

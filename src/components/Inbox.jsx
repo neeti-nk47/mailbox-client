@@ -56,14 +56,7 @@ export default function Inbox() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchHandler(userModEmail);
-      //console.log("Running useEffect every 2 seconds");
-    }, 2000);
-
-    return () => {
-      clearInterval(interval);
-    };
+    fetchHandler(userModEmail);
   }, [fetchHandler, userModEmail]);
 
   //DELETE-------------------------------------------------
@@ -136,7 +129,6 @@ export default function Inbox() {
 
                   <Button
                     size="sm"
-                    mx="5"
                     colorScheme="red"
                     onClick={() => deleteHandler(ele)}
                   >

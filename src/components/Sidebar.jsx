@@ -9,13 +9,13 @@ export default function Sidebar() {
 
   return (
     <List fontSize="1.2rem" spacing="3">
-      <ListItem p="2">
+      <ListItem p="2" _hover={{ bg: "blue.300", color: "white" }}>
         <NavLink to="/mailbox/Compose">
           <EditIcon m="3" />
           Compose
         </NavLink>
       </ListItem>
-      <ListItem p="2">
+      <ListItem p="2" _hover={{ bg: "blue.300", color: "white" }}>
         <NavLink to="/mailbox">
           <EmailIcon m="3" />
           Inbox
@@ -24,7 +24,7 @@ export default function Sidebar() {
           {mailsCtx.inboxCounter}
         </Badge>
       </ListItem>
-      <ListItem p="2">
+      <ListItem p="2" _hover={{ bg: "blue.300", color: "white" }}>
         <NavLink to="/mailbox/Sentmail">
           <ExternalLinkIcon m="3" />
           Sent

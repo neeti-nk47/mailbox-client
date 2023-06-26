@@ -18,9 +18,11 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import MailsContext from "../store/mails-context";
 
 export default function Inbox() {
+  const mailCtx = useContext(MailsContext);
   const [mails, setMails] = useState([]);
 
   const [selectedItem, setSelectedItem] = useState(null);
@@ -50,6 +52,7 @@ export default function Inbox() {
       });
     }
     setMails(inboxMails);
+    mailCtx.inboxUpdate(inboxMails.length);
   }, []);
 
   useEffect(() => {
